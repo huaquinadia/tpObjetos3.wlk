@@ -1,0 +1,109 @@
+import claseUsuario.*
+import claseLocalidad.*
+import claseTransporte.*
+import claseViaje.*
+import barrileteCosmico.*
+import instancias.*
+import claseUsuario.*
+
+
+describe "Entrega 2 Objetos " {
+	
+     test "obtener los destinos más importantes de Barrilete Cósmico"{
+        barrileteCosmico.destinosMasImportantes()
+        assert.equals(#{lasToninas,silversSea,garlicsSea},barrileteCosmico.destinosMasImportantes())
+        }
+
+     test "aplicarle un 25% de descuento a Las Toninas"{
+	    barrileteCosmico.aplicarDescuentoAlViaje(25)
+	    assert.equals(2625,lasToninas.precio())
+	   }
+	    
+	    
+     test " viaje de las toninas con un descuento del 25%"{
+        barrileteCosmico.aplicarDescuentoAlViaje(25)
+        assert.equals(#{'vacuna gripal','vacuna B','necronomicon','Certificado de descuento'},lasToninas.equipajeimprescindible())
+        }
+        
+        
+      test "aplicar descuento del 15% a good Airs"{
+      	barrileteCosmico.aplicarDescuentoAlViaje(10)
+      	assert.equals( 1350,goodAirs.precio())
+   }
+      
+   test "aplicar descuento del 15% a  garlicsSea"{
+       
+       barrileteCosmico.aplicarDescuentoAlViaje(15)
+       assert.that(garlicsSea.equipajeimprescindible().contains('Certificado de descuento'))
+       }
+      
+   test "aplicar el descuento del 15% a silversSea"{
+     	 barrileteCosmico.aplicarDescuentoAlViaje(15)
+  assert.that(silversSea.equipajeimprescindible().contains('Certificado de descuento'))
+     }
+     
+   test "Averiguar si Silver's Sea es un destino peligroso"{
+	    silversSea.esPeligroso()
+	    assert.that(silversSea.esPeligroso())
+        }
+        
+   test "Saber si Barrilete Cósmico es una empresa extrema"{
+    	 barrileteCosmico.esUnaEmpresaExtrema()
+    	 assert.that( barrileteCosmico.esUnaEmpresaExtrema())
+    }
+
+   test "Conocer la carta de destinos de Barrilete Cósmico"{
+        assert.equals(#{garlicsSea,silversSea,lasToninas,goodAirs},barrileteCosmico.destinos())}
+       
+       
+       
+   test "las TOninas es un lugar Destacado"{
+   	lasToninas.destinoDestacado()
+   	assert.that(lasToninas.destinoDestacado())
+   }
+   
+   
+test "si PHari viajo a silversSea "{
+	    pabloHari.viajar(viajeAlasMontanias)
+	    assert.equals(#{silversSea},pabloHari.lugaresVisitados())
+        }
+   
+    test "estado economico de Pblo Hari despues del viaje a las montañas  "{
+	    pabloHari.viajar(viajeAlasMontanias)
+	    assert.equals(53650,pabloHari.dinero())
+        }
+
+test "costo de viajar de las Toninas a silversSea en  tren"{
+    	
+    	assert.equals(46350, viajeAlasMontanias.precioTotal())
+    	}
+    
+    test "distancia de goodAirs a lasToninas"{
+    	assert.equals(80,goodAirs.distanciaHacia(lasToninas))
+    }
+    
+    test "millas de pabloHari"{
+    	assert.equals(0, pabloHari.millas(silversSea))
+    }
+    
+  test "lucia cambia de lugar de origen "{
+  	lucia.viajar(viajeAlasMontanias)
+  	 assert.equals(silversSea ,lucia.localidadDeOrigen() )
+  }
+   
+    test "millas de lucia"{
+    	assert.equals(80, lucia.millas(lasToninas))
+    }
+  test "lucia un usuario de perfil estudiantil obtiene su trasporte correspondiente"{
+    lucia.transporteCorrespondiente(barrileteCosmico)
+    assert.equals(avionAirs, lucia.transporteCorrespondiente(barrileteCosmico))
+  }
+   
+  test "gaston de perfil empresarial ontiene su trasnporte correspodiente"{
+  	gaston.transporteCorrespondiente(barrileteCosmico)
+  	assert.equals(avionAirs,gaston.transporteCorrespondiente(barrileteCosmico))
+   }
+  }
+  
+   
+    	
